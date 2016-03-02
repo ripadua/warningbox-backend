@@ -1,0 +1,25 @@
+<%= form_for(@historico_produto) do |f| %>
+  <% if @historico_produto.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@historico_produto.errors.count, "error") %> prohibited this historico_produto from being saved:</h2>
+
+      <ul>
+      <% @historico_produto.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :produto_id %><br>
+    <%= f.text_field :produto_id %>
+  </div>
+  <div class="field">
+    <%= f.label :dataVencimento %><br>
+    <%= f.date_select :dataVencimento %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

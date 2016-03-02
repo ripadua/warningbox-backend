@@ -1,0 +1,25 @@
+<%= form_for(@foto_produto) do |f| %>
+  <% if @foto_produto.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@foto_produto.errors.count, "error") %> prohibited this foto_produto from being saved:</h2>
+
+      <ul>
+      <% @foto_produto.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :imagem %><br>
+    <%= f.text_field :imagem %>
+  </div>
+  <div class="field">
+    <%= f.label :dataVencimento %><br>
+    <%= f.date_select :dataVencimento %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Imagem:</strong>
+  <%= @foto_produto.imagem %>
+</p>
+
+<p>
+  <strong>Datavencimento:</strong>
+  <%= @foto_produto.dataVencimento %>
+</p>
+
+<%= link_to 'Edit', edit_foto_produto_path(@foto_produto) %> |
+<%= link_to 'Back', foto_produtos_path %>

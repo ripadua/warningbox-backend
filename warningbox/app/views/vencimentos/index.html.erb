@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Vencimentos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Imagem</th>
+      <th>Datavencimento</th>
+      <th>Estabelecimento</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @vencimentos.each do |vencimento| %>
+      <tr>
+        <td><img src='data:image/jpeg;base64,<%= vencimento.imagem %>' width="100" heingth="100"/></td>
+        <td><%= vencimento.dataVencimento %></td>
+        <td><%= vencimento.estabelecimento %></td>
+        <td><%= link_to 'Show', vencimento %></td>
+        <td><%= link_to 'Edit', edit_vencimento_path(vencimento) %></td>
+        <td><%= link_to 'Destroy', vencimento, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Vencimento', new_vencimento_path %>

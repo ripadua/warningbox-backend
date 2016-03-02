@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Produto:</strong>
+  <%= @historico_produto.produto %>
+</p>
+
+<p>
+  <strong>Datavencimento:</strong>
+  <%= @historico_produto.dataVencimento %>
+</p>
+
+<%= link_to 'Edit', edit_historico_produto_path(@historico_produto) %> |
+<%= link_to 'Back', historico_produtos_path %>

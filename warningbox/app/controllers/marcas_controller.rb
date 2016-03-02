@@ -1,6 +1,7 @@
 class MarcasController < ApplicationController
   before_action :set_marca, only: [:show, :edit, :update, :destroy]
-
+  skip_before_action :verify_authenticity_token
+  
   # GET /marcas
   # GET /marcas.json
   def index
@@ -60,7 +61,7 @@ class MarcasController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_marca

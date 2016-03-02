@@ -1,0 +1,29 @@
+<%= form_for(@vencimento) do |f| %>
+  <% if @vencimento.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@vencimento.errors.count, "error") %> prohibited this vencimento from being saved:</h2>
+
+      <ul>
+      <% @vencimento.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :imagem %><br>
+    <%= f.text_field :imagem %>
+  </div>
+  <div class="field">
+    <%= f.label :dataVencimento %><br>
+    <%= f.date_select :dataVencimento %>
+  </div>
+  <div class="field">
+    <%= f.label :estabelecimento_id %><br>
+    <%= f.text_field :estabelecimento_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

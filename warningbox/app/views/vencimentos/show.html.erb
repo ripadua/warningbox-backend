@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Imagem:</strong>
+  <%= @vencimento.imagem %>
+</p>
+
+<p>
+  <strong>Datavencimento:</strong>
+  <%= @vencimento.dataVencimento %>
+</p>
+
+<p>
+  <strong>Estabelecimento:</strong>
+  <%= @vencimento.estabelecimento %>
+</p>
+
+<%= link_to 'Edit', edit_vencimento_path(@vencimento) %> |
+<%= link_to 'Back', vencimentos_path %>

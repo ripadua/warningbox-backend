@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  imagem: 
+  dataVencimento: 2016-02-28
+
+two:
+  imagem: 
+  dataVencimento: 2016-02-28

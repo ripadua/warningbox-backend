@@ -1,0 +1,2 @@
+module FotoProdutosHelper
+end
