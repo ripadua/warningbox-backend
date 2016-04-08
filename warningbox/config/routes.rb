@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
+  get 'notificacoes/create'
+
+  resources :usuarios
   resources :vencimentos
   resources :estabelecimentos
-  resources :foto_produtos
-  resources :historico_produtos
   resources :produtos
-  resources :usuarios
   resources :marcas
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -17,6 +17,10 @@ Rails.application.routes.draw do
   get 'vencidos' => 'vencimentos#listar_vencidos'
   
   get 'avencer' => 'vencimentos#listar_a_vencer'
+  
+  get 'consultarUsuarioPorEmail' => 'usuarios#consultarPorEmail'
+  
+  get 'consultarEstabelecimentosPorUsuario' => 'estabelecimentos#consultarPorUsuario'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

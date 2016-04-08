@@ -1,5 +1,6 @@
 class UsuariosController < ApplicationController
   before_action :set_usuario, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token
 
   # GET /usuarios
   # GET /usuarios.json
@@ -29,7 +30,7 @@ class UsuariosController < ApplicationController
     respond_to do |format|
       if @usuario.save
         format.html { redirect_to @usuario, notice: 'Usuario was successfully created.' }
-        format.json { render :show, status: :created, location: @usuario }
+        format.json { render json: @usuario }
       else
         format.html { render :new }
         format.json { render json: @usuario.errors, status: :unprocessable_entity }
@@ -60,6 +61,11 @@ class UsuariosController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def consultarPorEmail
+    usuario = Usuario.where("email == (?)", params[:email]).first
+    render :json => usuario.nil? ? 0 : usuario.id
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -69,6 +75,6 @@ class UsuariosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def usuario_params
-      params.require(:usuario).permit(:email, :nome, :nomeEmpresa)
+      params.require(:usuario).permit(:email, :idpush)
     end
 end

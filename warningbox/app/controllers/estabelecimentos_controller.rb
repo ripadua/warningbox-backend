@@ -1,5 +1,6 @@
 class EstabelecimentosController < ApplicationController
   before_action :set_estabelecimento, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token
 
   # GET /estabelecimentos
   # GET /estabelecimentos.json
@@ -25,11 +26,13 @@ class EstabelecimentosController < ApplicationController
   # POST /estabelecimentos.json
   def create
     @estabelecimento = Estabelecimento.new(estabelecimento_params)
+    @usuario = Usuario.find(usuario_params[:id])
+    @estabelecimento_usuario = EstabelecimentosUsuario.create(estabelecimento: @estabelecimento, usuario: @usuario)
 
     respond_to do |format|
       if @estabelecimento.save
         format.html { redirect_to @estabelecimento, notice: 'Estabelecimento was successfully created.' }
-        format.json { render :show, status: :created, location: @estabelecimento }
+        format.json { render json: @estabelecimento }
       else
         format.html { render :new }
         format.json { render json: @estabelecimento.errors, status: :unprocessable_entity }
@@ -60,6 +63,11 @@ class EstabelecimentosController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def consultarPorUsuario
+    usuario = Usuario.where("email == (?)", params[:usuario]).first
+    render :json => usuario.estabelecimentos
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -69,6 +77,10 @@ class EstabelecimentosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def estabelecimento_params
-      params.require(:estabelecimento).permit(:nome)
+      params.require(:estabelecimento).permit(:nome, :usuario_id)
+    end
+    
+    def usuario_params
+      params.require(:usuario).permit(:id)
     end
 end

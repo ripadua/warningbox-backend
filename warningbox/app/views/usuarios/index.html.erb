@@ -6,8 +6,6 @@
   <thead>
     <tr>
       <th>Email</th>
-      <th>Nome</th>
-      <th>Nomeempresa</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,8 +14,6 @@
     <% @usuarios.each do |usuario| %>
       <tr>
         <td><%= usuario.email %></td>
-        <td><%= usuario.nome %></td>
-        <td><%= usuario.nomeEmpresa %></td>
         <td><%= link_to 'Show', usuario %></td>
         <td><%= link_to 'Edit', edit_usuario_path(usuario) %></td>
         <td><%= link_to 'Destroy', usuario, method: :delete, data: { confirm: 'Are you sure?' } %></td>

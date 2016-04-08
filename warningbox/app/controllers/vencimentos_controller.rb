@@ -63,14 +63,18 @@ class VencimentosController < ApplicationController
   end
 
   def listar_vencidos
-    @vencimentos = Vencimento.where("dataVencimento < (?)", Date.today).order(:dataVencimento)
+    @estabelececimento = Estabelecimento.find(params[:estabelecimento_id])
+    @vencimentos = @estabelececimento.vencimentos.where("dataVencimento < (?)", Date.today).order(:dataVencimento)
     render :json => @vencimentos
   end
   
   def listar_a_vencer
-    @vencimentos = Vencimento.where("dataVencimento >= (?)", Date.today).order(:dataVencimento)
+    @estabelececimento = Estabelecimento.find(params[:estabelecimento_id])
+    @vencimentos = @estabelececimento.vencimentos.where("dataVencimento >= (?)", Date.today).order(:dataVencimento)
     render :json => @vencimentos
   end
+  
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -82,4 +86,5 @@ class VencimentosController < ApplicationController
     def vencimento_params
       params.require(:vencimento).permit(:imagem, :dataVencimento, :estabelecimento_id)
     end
+    
 end
